@@ -24,6 +24,7 @@ dcon=$(docker ps | grep igtnodered)
 if [ "x$dcon" == "x" ]; then
   echo "Starting NodeRED container..."
   docker run -d --restart unless-stopped -p 1880:1880 -v /neousys/nodered_data:/data --name igtnodered nodered/node-red
+  echo "NodeRED container started named igtnodered"
 else
   echo "container existing"
 fi
