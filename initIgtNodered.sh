@@ -11,7 +11,7 @@ fi
 
 dimg=$(docker image ls | grep nodered/node-red)
 if [ "x$dimg" == "x" ]; then
-  echo "Loading NodeRED image...It may take for a while."
+  echo "Loading NodeRED image...It may take a while."
   docker load -i /opt/source/docker/nodered.tar
 else
   echo "NodeRED image exists"
@@ -23,7 +23,7 @@ chmod 777 /neousys/nodered_data
 dcon=$(docker ps | grep igtnodered)
 if [ "x$dcon" == "x" ]; then
   echo "Starting NodeRED container..."
-  docker run -d --restart unless-stopped -p 1880:1880 -v /neousys/nodered_data:/data --name igtnodered nodered/node-red
+  docker run -d --privileged --restart unless-stopped -p 1880:1880 -v /neousys/nodered_data:/data --name igtnodered nodered/node-red
   echo "NodeRED container started named igtnodered"
   echo "Removing tar file..."
   rm /opt/source/docker/nodered.tar
